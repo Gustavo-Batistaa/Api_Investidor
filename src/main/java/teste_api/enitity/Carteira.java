@@ -3,30 +3,41 @@ package teste_api.enitity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import teste_api.dto.CarteiraDto;
-
-import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name="carteira")
 public class Carteira {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     private String nome;
     private String investidor;
 
-    public Carteira(CarteiraDto carteira) {
+    public Carteira() {
+
     }
 
     public Carteira(String nome, String investidor) {
         this.nome = nome;
         this.investidor = investidor;
+    }
+
+
+    public void setInvestidor(String investidor) {
+        this.investidor = investidor;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNome() {
@@ -36,5 +47,6 @@ public class Carteira {
     public String getInvestidor() {
         return investidor;
     }
+
 
 }
