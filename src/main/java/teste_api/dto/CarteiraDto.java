@@ -4,5 +4,12 @@ public record CarteiraDto(
         Long id,
 
         String nome,
-        String investidor) {
+
+        String investidor,
+
+        boolean ativada
+
+
+
+        ) {
 }

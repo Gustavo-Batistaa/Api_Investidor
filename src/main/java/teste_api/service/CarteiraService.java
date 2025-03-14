@@ -22,9 +22,10 @@ public class CarteiraService {
     private CarteiraRepository carteiraRepository;
 
     public CarteiraDto salvarCarteira(CarteiraDto carteiraDto) {
-        Carteira carteira = new Carteira(carteiraDto.nome(), carteiraDto.investidor());
+        Carteira carteira = new Carteira(carteiraDto.nome(), carteiraDto.investidor(),carteiraDto.ativada());
         Carteira carteira1 = carteiraRepository.save(carteira);
-        return new CarteiraDto(carteira1.getId(), carteira1.getNome(), carteira1.getInvestidor());
+        return new CarteiraDto(carteira1.getId(), carteira1.getNome(), carteira1.getInvestidor(), carteira1.getAtivada(true));
+
     }
 
     public List<Carteira> buscarTodos() {
@@ -55,10 +56,24 @@ public class CarteiraService {
         carteiraRepository.save(carteira);
 
         // Retorna os dados atualizados como DTO
-        CarteiraDto carteiraDto = new CarteiraDto(carteira.getId(), carteira.getNome(), carteira.getInvestidor());
+        CarteiraDto carteiraDto = new CarteiraDto(carteira.getId(), carteira.getNome(), carteira.getInvestidor(),carteira.getAtivada(true));
         return ResponseEntity.ok(carteiraDto);
     }
 
+    public ResponseEntity<Void>     desativarCarteira(Long id){
+        Optional<Carteira> carteiraOptional = carteiraRepository.findById(id); //Buscar a Carteira
+
+        if(carteiraOptional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        Carteira carteira = carteiraOptional.get();
+        carteira.setAtivada(false);
+        carteiraRepository.save(carteira);
+        return ResponseEntity.noContent().build();
+
+
+    }
 
 
 }

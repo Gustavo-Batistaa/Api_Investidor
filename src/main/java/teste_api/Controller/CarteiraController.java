@@ -40,8 +40,16 @@ public class CarteiraController {
     public ResponseEntity atualizarCarteira(@RequestBody DadosAtualizadoscarteira dados) {
         return carteiraService.atualizarInformacoes(dados.id(), dados);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> removerCarteira(@PathVariable Long id) {
+        return carteiraService.desativarCarteira(id);
+
+
 
     }
+
 
 
 }

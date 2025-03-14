@@ -7,7 +7,9 @@ public record DadosAtualizadoscarteira(
 
         String nome,
 
-        String investidor
+        String investidor,
+
+        Boolean ativada
 
                                        ) {
 }

@@ -17,14 +17,15 @@ public class Carteira {
 
     private String nome;
     private String investidor;
+    private boolean ativada;
 
-    public Carteira() {
 
-    }
+    public Carteira() {}
 
-    public Carteira(String nome, String investidor) {
+    public Carteira(String nome, String investidor, boolean ativada) {
         this.nome = nome;
         this.investidor = investidor;
+        this.ativada = true;
     }
 
 
@@ -46,6 +47,16 @@ public class Carteira {
 
     public String getInvestidor() {
         return investidor;
+    }
+
+    public Boolean getAtivada(boolean ativada) {
+        return ativada;
+
+
+    }
+
+    public void setAtivada(boolean ativada) {
+        this.ativada = ativada;
     }
 
 
